@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="background-color: #000">
+
+<script src="../mock/mock.js"></script>
+
+<script>
+    /* first */
+    var data = Mock.mock({
+        "string|1-10": "#"
+    });
+    console.log(data.string);
+</script>
+
+<script>
+    /* 数据模板定义规范 */
+    /* 每个属性由三部分组成： 属性名、生成规则、属性值
+     * "name|rule": value
+     *  */
+
+    /*String*/
+    var data = Mock.mock({
+        "name|2-6": "!#!"
+    });
+    console.log(data.name);
+
+
+    /*Number*/
+    data = Mock.mock({
+        "name|+2": 5
+    });
+    console.log(data.name);
+    data = Mock.mock({
+        "name|2-100": 5
+    });
+    console.log(data.name);
+    data = Mock.mock({
+        "name|2.8": 5.54
+    });
+    console.log(data.name);
+
+
+    /*Boolean*/
+    data = Mock.mock({
+        "name|1": true
+    });
+    console.log(data.name);
+    data = Mock.mock({
+        "name|1-5": true
+    });
+    console.log(data.name);
+
+
+    /*Object*/
+    data = Mock.mock({
+        "name|3": {
+            a: 1,
+            b: 2,
+            c: 3,
+            d: 4,
+            e: 5,
+            f: 6,
+        }
+    });
+    console.log(data.name);
+    data = Mock.mock({
+        "name|2-4": {
+            a: 1,
+            b: 2,
+            c: 3,
+            d: 4,
+            e: 5,
+            f: 6,
+        }
+    });
+    console.log(data.name);
+
+
+    /*Array*/
+    data = Mock.mock({
+        "name|1": [1, 2, 3, 4, 5, 6, 7]
+    });
+    console.log(data.name);
+    data = Mock.mock({
+        "name|2-5": [1, 2, 3, 4, 5, 6, 7]
+    });
+    console.log(data.name);
+    data = Mock.mock({
+        "name|2": [1, 2, 3, 4, 5, 6, 7]
+    });
+    console.log(data.name);
+    data = Mock.mock({
+        "name|+1": [1, 2, 3, 4, 5, 6, 7]
+    });
+    console.log(data.name);
+
+
+    /*Function：返回函数的执行结果*/
+    data = Mock.mock({
+        "name": function () {
+            return "afdacacac";
+        }
+    });
+    console.log(data.name);
+
+
+    /*RegExp：生成匹配的数据*/
+    data = Mock.mock({
+        "name": /[a-c][1-3][a-c]/
+    });
+    console.log(data.name);
+
+</script>
+
+
+<script>
+    /*占位符*/
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+

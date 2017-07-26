@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery/jquery-3.2.1.min.js"></script>
+    <script src="../mock/mock-min.js"></script>
+</head>
+<body style="background-color: black">
+
+<script>
+
+    /*https://github.com/nuysoft/Mock/wiki/Mock.mock()*/
+
+    var http = "http://localhost:63342/";
+    $(function () {
+        $.get(http + "test", {
+            a:1, b:2
+        }, function (data) {
+            console.log(data);
+        });
+        $.get(http + "test",function (data) {
+            console.log(data);
+        });
+        $.post(http + "test",function (data) {
+            console.log(data);
+        });
+        $.post(http + "test2",function (data) {
+            console.log(data);
+        });
+    });
+
+
+    /*配置拦截Ajax请求时的行为*/
+    Mock.setup({
+        timeout:"200-800"
+    });
+
+
+    Mock.mock(http + "test?a=1&b=2", {
+        "status|2": "1",
+        "data|2": {
+            "a|2-12": 1,
+            "b|1": ["ac", "bd", "ef"]
+        }
+    });
+    Mock.mock(http + "test?a=1&b=2", "post", {
+        "status|2": "1",
+        "data|2": {
+            "a|2-12": 1,
+            "b|1": ["ac", "bd", "ef"]
+        }
+    });
+    Mock.mock(http + "test", {
+        "status|2": "2",
+        "data|2": {
+            "a|2-12": 1,
+            "b|1": ["ac", "bd", "ef"]
+        }
+    });
+    Mock.mock(http + "test", "post", {
+        "status|2": "2",
+        "data|2": {
+            "a|2-12": 1,
+            "b|1": ["ac", "bd", "ef"]
+        }
+    });
+    Mock.mock(http + "test2", function (options) {
+        return options;
+    });
+
+    /*校验真实数据与数据模板是否匹配*/
+    var result = Mock.valid({
+        name: "v1"
+    },{
+        name: "v2"
+    });
+    console.log(result[0]);
+    var result2 = Mock.valid({
+        name: "v1"
+    },{
+        name: "v1"
+    });
+    console.log(result2);
+
+
+    /*风格转换*/
+    result = Mock.toJSONSchema({
+        "name|1-10": "#"
+    });
+    console.log(result);
+
+</script>
+
+
+</body>
+</html>

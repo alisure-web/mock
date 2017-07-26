@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../mock/mock-min.js"></script>
+</head>
+<body>
+
+    <script>
+        /*随机*/
+        var data = Mock.Random.email();
+        console.log(data);
+        data = Mock.Random.email("alisure.xyz");
+        console.log(data);
+
+        /*占位符*/
+        data = Mock.mock("@email");
+        console.log(data);
+        data = Mock.mock({
+            email: "@email"
+        });
+        console.log(data.email);
+
+        /*扩展*/
+        Mock.Random.extend({
+            alisure: function (data) {
+                var alisure = ["a1", "b2", "c3", "d4", "e5"];
+                return this.pick(alisure)
+            }
+        });
+        data = Mock.Random.alisure();
+        console.log(data);
+        data = Mock.mock("@alisure");
+        console.log(data);
+        data = Mock.mock({
+            alisure: "@alisure"
+        });
+        console.log(data.alisure);
+
+        /*boolean*/
+        data = Mock.Random.boolean();
+        console.log(data);
+        data = Mock.Random.boolean(1, 9, true); /*十分之一的概率返回true*/
+        console.log(data);
+        /*natural：随机自然数*/
+        data = Mock.Random.natural();
+        console.log(data);
+        data = Mock.Random.natural(12);
+        console.log(data);
+        data = Mock.Random.natural(12, 16);
+        console.log(data);
+        /*integer：随机整数*/
+        data = Mock.Random.integer();
+        console.log(data);
+        data = Mock.Random.integer(12);
+        console.log(data);
+        data = Mock.Random.integer(-16, 16);
+        console.log(data);
+        /*float：随机浮点数*/
+        data = Mock.Random.float();
+        console.log(data);
+        data = Mock.Random.float(12);
+        console.log(data);
+        data = Mock.Random.float(-16, 16);
+        console.log(data);
+        data = Mock.Random.float(-16, 16, 2);
+        console.log(data);
+        data = Mock.Random.float(-16, 16, 2, 4);
+        console.log(data);
+        /*character：随机字符*/
+        data = Mock.Random.character();
+        console.log(data);
+        data = Mock.Random.character("symbol"); /*内置字符池：lower/upper/number/symbol*/
+        console.log(data);
+        data = Mock.Random.character("alisure"); /*自定义字符池*/
+        console.log(data);
+        /*string：随机字符串*/
+        data = Mock.Random.string();
+        console.log(data);
+        data = Mock.Random.string(5);
+        console.log(data);
+        data = Mock.Random.string("upper", 5); /*内置字符池：lower/upper/number/symbol*/
+        console.log(data);
+        data = Mock.Random.string("alisure", 4); /*自定义字符池*/
+        console.log(data);
+        data = Mock.Random.string("alisure", 3, 5);
+        console.log(data);
+        /*range：随机整型数组*/
+        data = Mock.Random.range(10);
+        console.log(data);
+        data = Mock.Random.range(3, 10);
+        console.log(data);
+        data = Mock.Random.range(3, 10, 2);
+        console.log(data);
+
+
+        /*Date*/
+        data = Mock.Random.date();
+        console.log(data);
+        data = Mock.Random.date("yyyy-MM-dd HH:mm:ss.S");
+        console.log(data);
+        data = Mock.Random.time();
+        console.log(data);
+        data = Mock.Random.time("yyyy-MM-dd HH:mm:ss.S");
+        console.log(data);
+        data = Mock.Random.datetime();
+        console.log(data);
+        data = Mock.Random.datetime("yyyy-MM-dd HH:mm:ss.S");
+        console.log(data);
+        data = Mock.Random.now();
+        console.log(data);
+        data = Mock.Random.now("yyyy-MM-dd HH:mm:ss.S");
+        console.log(data);
+
+
+        /*Image*/
+        data = Mock.Random.image(); /*生成一个随机的图片地址*/
+        console.log(data);
+        data = Mock.Random.image("300x100", "#567", "#765", "png", "ALISURE");
+        console.log(data);
+        data = Mock.Random.dataImage(); /*生成一段随机的 Base64 图片编码*/
+        console.log(data);
+        data = Mock.Random.dataImage("300x100", "alisure");
+        console.log(data);
+
+
+        /*Color*/
+        data = Mock.Random.color();
+        console.log(data);
+        data = Mock.Random.hex();
+        console.log(data);
+        data = Mock.Random.rgb();
+        console.log(data);
+        data = Mock.Random.rgba();
+        console.log(data);
+        data = Mock.Random.hsl();
+        console.log(data);
+
+
+        /*Text*/
+        data = Mock.Random.paragraph();
+        console.log(data);
+        data = Mock.Random.paragraph(4);
+        console.log(data);
+        data = Mock.Random.paragraph(2, 3);
+        console.log(data);
+
+        data = Mock.Random.cparagraph();
+        console.log(data);
+        data = Mock.Random.cparagraph(2);
+        console.log(data);
+        data = Mock.Random.cparagraph(2, 3);
+        console.log(data);
+
+        data = Mock.Random.sentence();
+        console.log(data);
+        data = Mock.Random.sentence(4);
+        console.log(data);
+        data = Mock.Random.sentence(2, 3);
+        console.log(data);
+
+        data = Mock.Random.csentence();
+        console.log(data);
+        data = Mock.Random.csentence(2);
+        console.log(data);
+        data = Mock.Random.csentence(2, 3);
+        console.log(data);
+
+        data = Mock.Random.word();
+        console.log(data);
+        data = Mock.Random.word(2);
+        console.log(data);
+        data = Mock.Random.word(2, 3);
+        console.log(data);
+
+        data = Mock.Random.cword();
+        console.log(data);
+        data = Mock.Random.cword(2);
+        console.log(data);
+        data = Mock.Random.cword(2, 3);
+        console.log(data);
+        data = Mock.Random.cword("零一二三四五六七八九十");
+        console.log(data);
+        data = Mock.Random.cword("零一二三四五六七八九十", 5);
+        console.log(data);
+
+        data = Mock.Random.title();
+        console.log(data);
+        data = Mock.Random.title(2);
+        console.log(data);
+        data = Mock.Random.title(2, 3);
+        console.log(data);
+
+        data = Mock.Random.ctitle();
+        console.log(data);
+        data = Mock.Random.ctitle(2);
+        console.log(data);
+        data = Mock.Random.ctitle(2, 3);
+        console.log(data);
+
+
+        /*Name*/
+        data = Mock.Random.first();
+        console.log(data);
+        data = Mock.Random.last();
+        console.log(data);
+        data = Mock.Random.name();
+        console.log(data);
+        data = Mock.Random.name(true);
+        console.log(data);
+        data = Mock.Random.cfirst();
+        console.log(data);
+        data = Mock.Random.clast();
+        console.log(data);
+        data = Mock.Random.cname();
+        console.log(data);
+
+
+        /*Web*/
+        data = Mock.Random.url();
+        console.log(data);
+        data = Mock.Random.url("http");
+        console.log(data);
+        data = Mock.Random.url("http", "www.alisure.xyz");
+        console.log(data);
+        data = Mock.Random.protocol();
+        console.log(data);
+        data = Mock.Random.domain();
+        console.log(data);
+        data = Mock.Random.tld();
+        console.log(data);
+        data = Mock.Random.email();
+        console.log(data);
+        data = Mock.Random.email("alisure.xyz");
+        console.log(data);
+        data = Mock.Random.ip();
+        console.log(data);
+
+
+        /*Address*/
+        data = Mock.Random.region();
+        console.log(data);
+        data = Mock.Random.province();
+        console.log(data);
+        data = Mock.Random.city();
+        console.log(data);
+        data = Mock.Random.city(true);
+        console.log(data);
+        data = Mock.Random.county();
+        console.log(data);
+        data = Mock.Random.county(true);
+        console.log(data);
+        data = Mock.Random.zip();
+        console.log(data);
+
+
+        /*Helper*/
+        data = Mock.Random.capitalize("alisure");
+        console.log(data);
+        data = Mock.Random.upper("alisure");
+        console.log(data);
+        data = Mock.Random.lower(data);
+        console.log(data);
+        /*打乱*/
+        data = Mock.Random.shuffle(data.split(""));
+        console.log(data);
+        data = Mock.Random.pick(data);
+        console.log(data);
+
+
+        /*GUID*/
+        data = Mock.Random.guid();
+        console.log(data);
+
+        /*18 位身份证*/
+        data = Mock.Random.id();
+        console.log(data);
+
+        /*全局的自增整数*/
+        data = Mock.Random.increment();
+        console.log(data);
+        data = Mock.Random.increment(23);
+        console.log(data);
+        data = Mock.Random.increment(34);
+        console.log(data);
+        data = Mock.Random.increment(545);
+        console.log(data);
+
+
+
+    </script>
+
+</body>
+</html>
